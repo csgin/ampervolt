@@ -2,108 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --electric-glow: 0 0 20px rgba(0, 204, 204, 0.3);
-}
-
 body {
-  @apply bg-dark text-white;
+  @apply bg-white text-slate-700;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-900;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-electric-500 rounded;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-electric-400;
-}
-
-/* Electric grid background pattern */
-.electric-grid {
-  background-image: 
-    linear-gradient(rgba(0, 204, 204, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 204, 204, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: grid-move 20s linear infinite;
-}
-
-@keyframes grid-move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 50px 50px;
-  }
-}
-
-/* Glowing text effect */
-.text-glow {
-  text-shadow: 0 0 10px rgba(0, 204, 204, 0.5),
-               0 0 20px rgba(0, 204, 204, 0.3),
-               0 0 30px rgba(0, 204, 204, 0.2);
-}
-
-/* Electric border animation */
-@keyframes electric-border {
-  0% {
-    box-shadow: 0 0 5px rgba(0, 204, 204, 0.2),
-                0 0 10px rgba(0, 204, 204, 0.2),
-                inset 0 0 10px rgba(0, 204, 204, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 10px rgba(0, 204, 204, 0.4),
-                0 0 20px rgba(0, 204, 204, 0.3),
-                inset 0 0 15px rgba(0, 204, 204, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 5px rgba(0, 204, 204, 0.2),
-                0 0 10px rgba(0, 204, 204, 0.2),
-                inset 0 0 10px rgba(0, 204, 204, 0.1);
-  }
-}
-
-.electric-border {
-  animation: electric-border 3s ease-in-out infinite;
-}
-
-/* Smooth transitions */
-* {
-  @apply transition-colors duration-200;
-}
-
-/* Section styling */
 .section-padding {
-  @apply py-16 md:py-24 px-4 sm:px-6 lg:px-8;
+  @apply py-14 md:py-20 px-4 sm:px-6 lg:px-8;
 }
 
-/* Card hover effects */
-.card-hover {
-  @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-electric;
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 bg-electric-700 hover:bg-electric-800 text-white font-bold px-6 py-3 rounded-lg transition-colors;
 }
 
-/* Gradient overlays */
-.gradient-overlay {
-  background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(0, 204, 204, 0.1) 100%);
-}
-
-/* Animation delays */
-.delay-75 {
-  animation-delay: 75ms;
-}
-
-.delay-150 {
-  animation-delay: 150ms;
-}
-
-.delay-300 {
-  animation-delay: 300ms;
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 border border-electric-700 text-electric-700 hover:bg-electric-50 font-bold px-6 py-3 rounded-lg transition-colors;
 }

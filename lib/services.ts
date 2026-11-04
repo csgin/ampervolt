@@ -19,7 +19,6 @@ export interface ServicePage {
   metaDescription: string
   lead: string
   cardDescription: string
-  cardFeatures: string[]
   sections: ServiceSection[]
   scope: string[]
   priceFactors: string[]
@@ -66,11 +65,6 @@ export const services: ServicePage[] = [
     lead: `Projektujemy i wykonujemy kompletne instalacje elektryczne dla domów, mieszkań i firm – od przewodów i osprzętu, przez rozdzielnicę, po pomiary odbiorcze. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Kompleksowe wykonanie instalacji elektrycznych w nowych i remontowanych obiektach, zgodnie z normami.',
-    cardFeatures: [
-      'Montaż instalacji od podstaw',
-      'Rozdzielnice i zabezpieczenia',
-      'Pomiary i protokoły odbiorowe',
-    ],
     sections: [
       {
         heading: 'Na czym polega wykonanie instalacji elektrycznej',
@@ -143,11 +137,6 @@ export const services: ServicePage[] = [
     lead: `Wykonujemy instalacje elektryczne w budowanych i remontowanych domach jednorodzinnych – od uziomu w fundamentach po montaż osprzętu w stanie wykończeniowym. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Instalacja elektryczna w nowym domu – od uziomu i rozdzielnicy po oświetlenie i przygotowanie pod pompę ciepła.',
-    cardFeatures: [
-      'Uziom i instalacja odgromowa',
-      'Rozdzielnica główna i obwody',
-      'Przygotowanie pod PV i wallbox',
-    ],
     sections: [
       {
         heading: 'Instalacja elektryczna w domu krok po kroku',
@@ -220,11 +209,6 @@ export const services: ServicePage[] = [
     lead: `Wykonujemy nowe instalacje w mieszkaniach po zakupie od dewelopera oraz kompleksowo wymieniamy stare instalacje podczas remontu. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Nowa instalacja i wymiana w mieszkaniu – w bloku i kamienicy, w stanie deweloperskim lub podczas remontu.',
-    cardFeatures: [
-      'Instalacja w stanie deweloperskim',
-      'Wymiana przy remoncie mieszkania',
-      'Nowa rozdzielnica mieszkaniowa',
-    ],
     sections: [
       {
         heading: 'Mieszkanie z rynku pierwotnego i wtórnego',
@@ -298,11 +282,6 @@ export const services: ServicePage[] = [
     lead: `Wykonujemy instalacje elektryczne w biurach, sklepach, restauracjach, gabinetach i magazynach – z uwzględnieniem wymagań działalności i terminów otwarcia lokalu. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Instalacje elektryczne w biurach, sklepach, lokalach usługowych i magazynach – z dokumentacją i fakturą VAT.',
-    cardFeatures: [
-      'Biura, sklepy i lokale usługowe',
-      'Instalacje siłowe 400 V',
-      'Rozdzielnice i dokumentacja',
-    ],
     sections: [
       {
         heading: 'Instalacja dopasowana do działalności',
@@ -369,11 +348,6 @@ export const services: ServicePage[] = [
     lead: `Przestarzała instalacja to ryzyko pożaru i porażenia. Wymieniamy stare instalacje aluminiowe i dwużyłowe na nowoczesne, bezpieczne rozwiązania zgodne z normami. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Wymiana starych instalacji aluminiowych na miedziane, modernizacja rozdzielnic i zwiększenie mocy.',
-    cardFeatures: [
-      'Wymiana przewodów aluminiowych',
-      'Nowa rozdzielnica i zabezpieczenia',
-      'Rozbudowa liczby obwodów i gniazd',
-    ],
     sections: [
       {
         heading: 'Kiedy warto wymienić instalację elektryczną',
@@ -446,11 +420,6 @@ export const services: ServicePage[] = [
     lead: `Rozdzielnica to serce instalacji elektrycznej. Montujemy i modernizujemy rozdzielnice domowe i firmowe z zabezpieczeniami dobranymi do obciążenia i planowanych urządzeń. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Montaż i modernizacja rozdzielnic, wyłączniki różnicowoprądowe i ochrona przeciwprzepięciowa.',
-    cardFeatures: [
-      'Nowa lub wymieniana rozdzielnica',
-      'Ochrona przeciwprzepięciowa',
-      'Opis obwodów i schemat',
-    ],
     sections: [
       {
         heading: 'Co znajduje się w rozdzielnicy',
@@ -522,11 +491,6 @@ export const services: ServicePage[] = [
     lead: `Instalujemy stacje ładowania aut elektrycznych w domach, garażach i firmach. Sprawdzamy instalację, dobieramy moc i wykonujemy dedykowany obwód. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Montaż wallboxów w domach i firmach – dedykowany obwód, zabezpieczenia i pomiary.',
-    cardFeatures: [
-      'Ocena instalacji i mocy przyłączeniowej',
-      'Dedykowany obwód i zabezpieczenia',
-      'Konfiguracja i instruktaż',
-    ],
     sections: [
       {
         heading: 'Jak przygotować instalację do ładowania auta',
@@ -593,11 +557,6 @@ export const services: ServicePage[] = [
     lead: `Wykonujemy pomiary odbiorcze nowych i zmodernizowanych instalacji oraz okresowe przeglądy instalacji elektrycznych. Zapewniamy komplet protokołów. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Pomiary odbiorcze, przeglądy okresowe i protokoły potwierdzające bezpieczeństwo instalacji.',
-    cardFeatures: [
-      'Pomiary po wykonaniu instalacji',
-      'Przeglądy okresowe',
-      'Protokoły i dokumentacja',
-    ],
     sections: [
       {
         heading: 'Po co wykonuje się pomiary elektryczne',
@@ -674,11 +633,6 @@ export const services: ServicePage[] = [
     lead: `Przygotowujemy instalację i podłączamy urządzenia dużej mocy: płyty indukcyjne, piekarniki, pompy ciepła, klimatyzatory i falowniki. Pracujemy na terenie: ${AREA}.`,
     cardDescription:
       'Podłączenie płyty indukcyjnej, pompy ciepła, klimatyzacji i falownika – z dedykowanym obwodem.',
-    cardFeatures: [
-      'Płyta indukcyjna i piekarnik',
-      'Pompa ciepła i klimatyzacja',
-      'Falownik fotowoltaiczny (część AC)',
-    ],
     sections: [
       {
         heading: 'Dlaczego urządzenia dużej mocy wymagają własnego obwodu',

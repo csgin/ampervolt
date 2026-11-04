@@ -22,18 +22,8 @@ export const homeFaq: FaqItem[] = [
       'Tak. Po zakończeniu prac wykonujemy pomiary elektryczne i przekazujemy protokoły potwierdzające skuteczność ochrony przeciwporażeniowej oraz stan izolacji.',
   },
   {
-    question: 'Czy wystawiacie faktury VAT?',
-    answer:
-      'Tak, standardowo wystawiamy faktury VAT. Posiadamy wszystkie niezbędne ubezpieczenia i uprawnienia do wykonywania usług elektrycznych.',
-  },
-  {
     question: 'Czy udzielacie gwarancji na wykonane prace?',
     answer:
       'Tak, wszystkie nasze usługi objęte są 12-miesięczną gwarancją. Dodatkowo materiały posiadają gwarancję producenta. Wydajemy pisemne potwierdzenie gwarancji.',
-  },
-  {
-    question: 'Jakie materiały stosujecie?',
-    answer:
-      'Pracujemy wyłącznie na sprawdzonych, certyfikowanych materiałach renomowanych producentów. Klient może wybrać konkretne marki lub skorzystać z naszych rekomendacji.',
   },
 ]

@@ -43,7 +43,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className={`${inter.className} bg-dark text-white min-h-screen antialiased`}>
+      <body className={`${inter.className} bg-white text-slate-700 min-h-screen antialiased`}>
         <Navigation />
         <main className="min-h-screen">
           {children}
