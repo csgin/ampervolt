@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Zap, Mail, Phone, MapPin } from 'lucide-react'
+import { services } from '@/lib/services'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -15,29 +16,21 @@ const Footer = () => {
               <span className="text-xl font-bold">AMPERVOLT</span>
             </div>
             <p className="text-gray-400 text-sm">
-              Profesjonalne usługi elektryczne. Bezpieczeństwo i jakość w każdym projekcie.
+              Instalacje elektryczne dla domów, mieszkań i firm. Bezpieczeństwo i jakość w każdym projekcie.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-electric-500">Szybkie Linki</h3>
+            <h3 className="text-lg font-semibold mb-4 text-electric-500">Usługi</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/#oferta" className="text-gray-400 hover:text-electric-500 text-sm transition-colors">
-                  Oferta
-                </Link>
-              </li>
-              <li>
-                <Link href="/#specjalizacje" className="text-gray-400 hover:text-electric-500 text-sm transition-colors">
-                  Specjalizacje
-                </Link>
-              </li>
-              <li>
-                <Link href="/#o-mnie" className="text-gray-400 hover:text-electric-500 text-sm transition-colors">
-                  O Mnie
-                </Link>
-              </li>
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link href={`/uslugi/${service.slug}`} className="text-gray-400 hover:text-electric-500 text-sm transition-colors">
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link href="/kontakt" className="text-gray-400 hover:text-electric-500 text-sm transition-colors">
                   Kontakt

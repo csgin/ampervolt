@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Zap } from 'lucide-react'
+import { Menu, X, Zap, Phone } from 'lucide-react'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,9 +18,9 @@ const Navigation = () => {
 
   const navLinks = [
     { href: '/', label: 'Start' },
-    { href: '/#oferta', label: 'Oferta' },
-    { href: '/#specjalizacje', label: 'Moje Specjalizacje' },
-    { href: '/#o-mnie', label: 'O Mnie' },
+    { href: '/uslugi', label: 'Usługi' },
+    { href: '/#opinie', label: 'Opinie' },
+    { href: '/#cennik', label: 'Cennik' },
     { href: '/kontakt', label: 'Kontakt' },
   ]
 
@@ -50,7 +50,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -61,11 +61,18 @@ const Navigation = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-electric-500 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
+            <a
+              href="tel:+48XXXXXXXXX"
+              className="flex items-center gap-2 bg-electric-500 hover:bg-electric-400 text-black font-bold px-4 py-2 rounded-lg shadow-glow transition-all duration-300"
+            >
+              <Phone className="w-4 h-4" />
+              <span className="hidden lg:inline">+48 XXX XXX XXX</span>
+            </a>
             <Link
               href="/kontakt"
-              className="btn-primary"
+              className="border-2 border-electric-500 text-electric-500 hover:bg-electric-500 hover:text-black font-bold px-4 py-2 rounded-lg transition-all duration-300"
             >
-              Skontaktuj się
+              Darmowa Wycena
             </Link>
           </div>
 
@@ -98,12 +105,18 @@ const Navigation = () => {
                 {link.label}
               </Link>
             ))}
+            <a
+              href="tel:+48XXXXXXXXX"
+              className="block bg-electric-500 hover:bg-electric-400 text-black font-bold py-3 px-4 rounded-lg text-center transition-all duration-300 mt-4"
+            >
+              📞 +48 XXX XXX XXX
+            </a>
             <Link
               href="/kontakt"
               onClick={handleLinkClick}
-              className="block btn-primary text-center mt-4"
+              className="block border-2 border-electric-500 text-electric-500 hover:bg-electric-500 hover:text-black font-bold py-3 px-4 rounded-lg text-center transition-all duration-300"
             >
-              Skontaktuj się
+              Darmowa Wycena
             </Link>
           </div>
         </div>
