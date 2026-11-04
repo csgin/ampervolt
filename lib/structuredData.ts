@@ -1,17 +1,19 @@
+import { homeFaq } from './faq'
+import { SITE_NAME, SITE_URL } from './site'
+import type { FaqItem, ServicePage } from './services'
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Ampervolt',
-  image: 'https://ampervolt.net/logo.png',
-  '@id': 'https://ampervolt.net',
-  url: 'https://ampervolt.net',
+  '@type': 'Electrician',
+  name: SITE_NAME,
+  image: `${SITE_URL}/logo.png`,
+  '@id': SITE_URL,
+  url: SITE_URL,
   telephone: '+48-XXX-XXX-XXX',
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '',
     addressLocality: 'Warszawa',
-    postalCode: '',
     addressCountry: 'PL',
   },
   geo: {
@@ -25,13 +27,6 @@ export const organizationSchema = {
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
       opens: '08:00',
       closes: '18:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Saturday', 'Sunday'],
-      opens: '00:00',
-      closes: '23:59',
-      description: 'Interwencje awaryjne 24/7',
     },
   ],
   sameAs: [
@@ -49,77 +44,48 @@ export const organizationSchema = {
   },
   serviceType: [
     'Instalacje elektryczne',
-    'Modernizacje',
-    'Naprawy elektryczne',
+    'Wymiana instalacji elektrycznej',
+    'Montaż rozdzielnic',
+    'Montaż ładowarek samochodów elektrycznych',
     'Pomiary elektryczne',
-    'Interwencje awaryjne',
   ],
 }
 
-export const faqSchema = {
+export const buildFaqSchema = (items: FaqItem[]) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'Ile kosztuje przyjazd elektryka?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Dojazd w ramach Warszawy i okolic jest bezpłatny przy zleceniu usługi. W przypadku samej wyceny pobieramy symboliczną opłatę, którą odliczamy od wartości zlecenia.',
-      },
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
     },
-    {
-      '@type': 'Question',
-      name: 'Czy dojeżdżacie w trybie awaryjnym 24h?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Tak, oferujemy całodobową pomoc w nagłych przypadkach. Czas dojazdu to maksymalnie 60 minut od zgłoszenia. Interwencje awaryjne wyceniane są indywidualnie.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Czy wystawiacie faktury VAT?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Tak, standardowo wystawiamy faktury VAT. Posiadamy wszystkie niezbędne ubezpieczenia i uprawnienia do wykonywania usług elektrycznych.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Ile trwa typowa instalacja elektryczna?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Czas realizacji zależy od zakresu prac. Wymiana gniazdek to kilka godzin, kompletna instalacja w mieszkaniu 2-3 dni, w domu jednorodzinnym 1-2 tygodnie. Dokładny harmonogram ustalamy po wycenie.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Czy udzielacie gwarancji na wykonane prace?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Tak, wszystkie nasze usługi objęte są 12-miesięczną gwarancją. Dodatkowo materiały posiadają gwarancję producenta. Wydajemy pisemne potwierdzenie gwarancji.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Jakie materiały stosujecie?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Pracujemy wyłącznie na sprawdzonych, certyfikowanych materiałach renomowanych producentów. Klient może wybrać konkretne marki lub skorzystać z naszych rekomendacji.',
-      },
-    },
-  ],
-}
+  })),
+})
 
-export const breadcrumbSchema = {
+export const faqSchema = buildFaqSchema(homeFaq)
+
+export const buildBreadcrumbSchema = (
+  crumbs: { name: string; path: string }[]
+) => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: 'https://ampervolt.net',
-    },
-  ],
-}
+  itemListElement: crumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.name,
+    item: `${SITE_URL}${crumb.path}`,
+  })),
+})
+
+export const buildServiceSchema = (service: ServicePage) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.h1,
+  description: service.metaDescription,
+  url: `${SITE_URL}/uslugi/${service.slug}`,
+  serviceType: service.name,
+  provider: { '@id': SITE_URL },
+  areaServed: { '@type': 'City', name: 'Warszawa' },
+})

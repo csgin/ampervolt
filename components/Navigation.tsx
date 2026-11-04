@@ -18,8 +18,7 @@ const Navigation = () => {
 
   const navLinks = [
     { href: '/', label: 'Start' },
-    { href: '/#uslugi', label: 'Usługi' },
-    { href: '/#realizacje', label: 'Realizacje' },
+    { href: '/uslugi', label: 'Usługi' },
     { href: '/#opinie', label: 'Opinie' },
     { href: '/#cennik', label: 'Cennik' },
     { href: '/kontakt', label: 'Kontakt' },
@@ -70,7 +69,7 @@ const Navigation = () => {
               <span className="hidden lg:inline">+48 XXX XXX XXX</span>
             </a>
             <Link
-              href="#kontakt"
+              href="/kontakt"
               className="border-2 border-electric-500 text-electric-500 hover:bg-electric-500 hover:text-black font-bold px-4 py-2 rounded-lg transition-all duration-300"
             >
               Darmowa Wycena
@@ -113,7 +112,7 @@ const Navigation = () => {
               📞 +48 XXX XXX XXX
             </a>
             <Link
-              href="#kontakt"
+              href="/kontakt"
               onClick={handleLinkClick}
               className="block border-2 border-electric-500 text-electric-500 hover:bg-electric-500 hover:text-black font-bold py-3 px-4 rounded-lg text-center transition-all duration-300"
             >

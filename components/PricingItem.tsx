@@ -59,7 +59,7 @@ const PricingItem: React.FC<PricingItemProps> = ({
         ))}
       </ul>
       <a
-        href="#kontakt"
+        href="/kontakt"
         className={`
           block text-center font-bold py-3 px-6 rounded-lg transition-all duration-300
           ${isPopular

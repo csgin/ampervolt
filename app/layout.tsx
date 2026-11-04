@@ -5,19 +5,28 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import StickyCTA from '@/components/StickyCTA'
 import { organizationSchema } from '@/lib/structuredData'
+import { SITE_NAME, SITE_URL } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Ampervolt - Profesjonalne Usługi Elektryczne 24/7 w Twojej Okolicy',
-  description: 'Szybki dojazd ⚡ Certyfikowany elektryk ✓ Gwarancja wykonania ✓ Usługi elektryczne dla domów i firm. Instalacje, naprawy, modernizacje. Dzwoń: +48 XXX XXX XXX',
-  keywords: 'elektryk, usługi elektryczne, instalacje elektryczne, naprawa instalacji, awaria elektryczna, elektryk 24h, pomiary elektryczne, przeglądy elektryczne',
-  authors: [{ name: 'Ampervolt' }],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Instalacje elektryczne Warszawa – wykonanie i montaż | Ampervolt',
+    template: '%s | Ampervolt',
+  },
+  description:
+    'Wykonujemy instalacje elektryczne w domach, mieszkaniach i firmach w Warszawie i okolicach. Montaż od podstaw, rozdzielnice, pomiary i protokoły. Bezpłatna wycena.',
+  authors: [{ name: SITE_NAME }],
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Ampervolt - Profesjonalne Usługi Elektryczne 24/7',
-    description: 'Szybki dojazd ⚡ Certyfikowany elektryk ✓ Gwarancja wykonania. Kompleksowe usługi elektryczne.',
+    title: 'Ampervolt – instalacje elektryczne w Warszawie',
+    description:
+      'Montaż i wykonanie instalacji elektrycznych w domach, mieszkaniach i firmach. Certyfikowany elektryk, pomiary, gwarancja wykonania.',
     type: 'website',
     locale: 'pl_PL',
+    siteName: SITE_NAME,
+    url: '/',
   },
 }
 

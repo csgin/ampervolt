@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Kontakt - Ampervolt',
-  description: 'Skontaktuj się z Ampervolt - profesjonalne usługi elektryczne. Telefon, email, lokalizacja.',
+  title: 'Kontakt',
+  description: 'Skontaktuj się z Ampervolt – zamów bezpłatną wycenę instalacji elektrycznej. Telefon, email, lokalizacja.',
+  alternates: { canonical: '/kontakt' },
 }
 
 export default function ContactPage() {

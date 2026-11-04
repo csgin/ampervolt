@@ -1,20 +1,25 @@
 import Link from 'next/link'
 import { 
-  Zap, Phone, Clock, Shield, Wrench, TrendingUp, 
-  Home, Building2, Lightbulb, AlertCircle, Plug, Box,
-  CheckCircle, Award, ThumbsUp, Timer, Star, ChevronRight
+  Zap, Phone, Shield, Wrench,
+  Home, Building2, Store, Plug, PlugZap, Box,
+  CheckCircle, Award, ThumbsUp, Timer, ChevronRight
 } from 'lucide-react'
 import ServiceCard from '@/components/ServiceCard'
 import FeatureCard from '@/components/FeatureCard'
 import TestimonialCard from '@/components/TestimonialCard'
 import PricingItem from '@/components/PricingItem'
+import JsonLd from '@/components/JsonLd'
+import { homeFaq } from '@/lib/faq'
+import { services } from '@/lib/services'
+import { faqSchema } from '@/lib/structuredData'
+import { PHONE_DISPLAY, PHONE_HREF } from '@/lib/site'
 
 export default function HomePage() {
   const features = [
     {
       icon: <Timer className="w-8 h-8" />,
-      title: 'Szybki Dojazd',
-      description: 'Docieramy do klienta w ciągu 60 minut od zgłoszenia w sytuacjach awaryjnych',
+      title: 'Bezpłatna Wycena',
+      description: 'Oględziny i jasna wycena z podziałem na robociznę i materiały - przed rozpoczęciem prac',
     },
     {
       icon: <Award className="w-8 h-8" />,
@@ -43,80 +48,18 @@ export default function HomePage() {
     },
   ]
 
-  const services = [
-    {
-      icon: <Home className="w-8 h-8" />,
-      title: 'Instalacje Elektryczne',
-      description: 'Kompleksowe wykonawstwo instalacji elektrycznych w domach i mieszkaniach zgodnie z normami',
-      features: [
-        'Projektowanie i montaż instalacji od podstaw',
-        'Rozdzielnice i tablice elektryczne',
-        'Instalacje gniazdkowe i oświetleniowe',
-        'Pomiary elektryczne i protokoły'
-      ],
-      slug: 'instalacje-elektryczne',
-    },
-    {
-      icon: <Wrench className="w-8 h-8" />,
-      title: 'Modernizacje',
-      description: 'Unowocześnianie przestarzałych instalacji elektrycznych z zachowaniem najwyższych standardów',
-      features: [
-        'Wymiana starych instalacji',
-        'Rozbudowa istniejących układów',
-        'Aktualizacja do obecnych norm',
-        'Zwiększenie mocy przyłączeniowej'
-      ],
-      slug: 'modernizacje',
-    },
-    {
-      icon: <CheckCircle className="w-8 h-8" />,
-      title: 'Pomiary i Przeglądy',
-      description: 'Profesjonalne pomiary elektryczne i okresowe przeglądy instalacji z dokumentacją',
-      features: [
-        'Pomiary rezystancji izolacji',
-        'Pomiary uziemień ochronnych',
-        'Przeglądy okresowe',
-        'Protokoły i certyfikaty'
-      ],
-      slug: 'pomiary-przeglady',
-    },
-    {
-      icon: <AlertCircle className="w-8 h-8" />,
-      title: 'Usuwanie Awarii 24/7',
-      description: 'Całodobowa pomoc w sytuacjach awaryjnych - szybka diagnoza i naprawa',
-      features: [
-        'Interwencje awaryjne 24h',
-        'Diagnozowanie usterek',
-        'Naprawa na miejscu',
-        'Czas dojazdu do 60 minut'
-      ],
-      slug: 'awarie-24h',
-    },
-    {
-      icon: <Plug className="w-8 h-8" />,
-      title: 'Podłączenia Urządzeń',
-      description: 'Profesjonalne podłączanie urządzeń elektrycznych i AGD z zachowaniem bezpieczeństwa',
-      features: [
-        'Kuchenki i piekarniki',
-        'Klimatyzacje i pompy ciepła',
-        'Ładowarki samochodów elektrycznych',
-        'Fotowoltaika - przyłączenie'
-      ],
-      slug: 'podlaczenia-urzadzen',
-    },
-    {
-      icon: <Box className="w-8 h-8" />,
-      title: 'Rozdzielnie i Zabezpieczenia',
-      description: 'Montaż i modernizacja rozdzielni elektrycznych oraz systemów zabezpieczeń',
-      features: [
-        'Rozdzielnie domowe i przemysłowe',
-        'Ochrona przeciwprzepięciowa',
-        'Systemy monitoringu zużycia',
-        'Automatyka domowa'
-      ],
-      slug: 'rozdzielnie-zabezpieczenia',
-    },
-  ]
+  const serviceIcons: Record<string, React.ReactNode> = {
+    'instalacje-elektryczne': <Zap className="w-8 h-8" />,
+    'instalacje-elektryczne-w-domu': <Home className="w-8 h-8" />,
+    'instalacje-elektryczne-w-mieszkaniu': <Building2 className="w-8 h-8" />,
+    'instalacje-elektryczne-dla-firm': <Store className="w-8 h-8" />,
+    'wymiana-instalacji-elektrycznej': <Wrench className="w-8 h-8" />,
+    'rozdzielnice-elektryczne': <Box className="w-8 h-8" />,
+    'ladowarki-samochodow-elektrycznych': <PlugZap className="w-8 h-8" />,
+    'pomiary-elektryczne-odbiorowe': <CheckCircle className="w-8 h-8" />,
+    'podlaczenia-urzadzen': <Plug className="w-8 h-8" />,
+  }
+
 
   const testimonials = [
     {
@@ -199,47 +142,21 @@ export default function HomePage() {
       ],
     },
     {
-      title: 'Interwencja Awaryjna',
-      price: 'od 200 zł',
-      description: 'Usługa 24/7',
+      title: 'Kompleksowa Instalacja',
+      price: 'Wycena indywidualna',
+      description: 'Dom, mieszkanie lub lokal',
       features: [
-        'Dojazd w ciągu 60 min',
-        'Diagnoza problemu',
-        'Naprawa na miejscu',
+        'Instalacja od podstaw',
+        'Rozdzielnica z opisem obwodów',
+        'Pomiary i protokoły',
         'Gwarancja wykonania',
       ],
     },
   ]
 
-  const faqItems = [
-    {
-      question: 'Ile kosztuje przyjazd elektryka?',
-      answer: 'Dojazd w ramach Warszawy i okolic jest bezpłatny przy zleceniu usługi. W przypadku samej wyceny pobieramy symboliczną opłatę, którą odliczamy od wartości zlecenia.',
-    },
-    {
-      question: 'Czy dojeżdżacie w trybie awaryjnym 24h?',
-      answer: 'Tak, oferujemy całodobową pomoc w nagłych przypadkach. Czas dojazdu to maksymalnie 60 minut od zgłoszenia. Interwencje awaryjne wyceniane są indywidualnie.',
-    },
-    {
-      question: 'Czy wystawiacie faktury VAT?',
-      answer: 'Tak, standardowo wystawiamy faktury VAT. Posiadamy wszystkie niezbędne ubezpieczenia i uprawnienia do wykonywania usług elektrycznych.',
-    },
-    {
-      question: 'Ile trwa typowa instalacja elektryczna?',
-      answer: 'Czas realizacji zależy od zakresu prac. Wymiana gniazdek to kilka godzin, kompletna instalacja w mieszkaniu 2-3 dni, w domu jednorodzinnym 1-2 tygodnie. Dokładny harmonogram ustalamy po wycenie.',
-    },
-    {
-      question: 'Czy udzielacie gwarancji na wykonane prace?',
-      answer: 'Tak, wszystkie nasze usługi objęte są 12-miesięczną gwarancją. Dodatkowo materiały posiadają gwarancję producenta. Wydajemy pisemne potwierdzenie gwarancji.',
-    },
-    {
-      question: 'Jakie materiały stosujecie?',
-      answer: 'Pracujemy wyłącznie na sprawdzonych, certyfikowanych materiałach renomowanych producentów. Klient może wybrać konkretne marki lub skorzystać z naszych rekomendacji.',
-    },
-  ]
-
   return (
     <>
+      <JsonLd data={faqSchema} />
       {/* Hero Section - Sprzedażowy */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 electric-grid opacity-10" />
@@ -254,41 +171,41 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
           <div className="mb-6 inline-flex items-center gap-2 bg-electric-500/10 border border-electric-500/30 rounded-full px-4 py-2">
             <Zap className="w-4 h-4 text-electric-500" />
-            <span className="text-electric-500 text-sm font-medium">Profesjonalne Usługi Elektryczne</span>
+            <span className="text-electric-500 text-sm font-medium">Montaż i wykonanie instalacji elektrycznych</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up">
-            <span className="text-white">Elektryk </span>
-            <span className="text-electric-500 text-glow">24/7</span>
+            <span className="text-white">Instalacje </span>
+            <span className="text-electric-500 text-glow">elektryczne</span>
             <br />
-            <span className="text-white">w Twojej Okolicy</span>
+            <span className="text-white">w Warszawie i okolicach</span>
           </h1>
 
           <p className="text-xl sm:text-2xl text-gray-300 mb-4 max-w-3xl mx-auto animate-fade-in">
-            Szybki dojazd ⚡ Certyfikowane uprawnienia ✓ Gwarancja wykonania
+            Certyfikowane uprawnienia ✓ Pomiary i protokoły ✓ Gwarancja wykonania
           </p>
 
           <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-            Kompleksowe usługi elektryczne dla domów i firm. 
-            Instalacje, modernizacje, naprawy i interwencje awaryjne.
+            Wykonujemy instalacje elektryczne w domach jednorodzinnych, mieszkaniach i lokalach firmowych. 
+            Od projektu tras i rozdzielnicy po pomiary odbiorcze.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <a
-              href="tel:+48XXXXXXXXX"
+              href={PHONE_HREF}
               className="inline-flex items-center justify-center gap-3 bg-electric-500 hover:bg-electric-400 text-black font-bold text-lg px-8 py-4 rounded-lg shadow-glow hover:shadow-electric-xl transition-all duration-300 animate-pulse-glow"
             >
               <Phone className="w-6 h-6" />
-              <span>Zadzwoń: +48 XXX XXX XXX</span>
+              <span>Zadzwoń: {PHONE_DISPLAY}</span>
             </a>
-            <a
-              href="#kontakt"
+            <Link
+              href="/kontakt"
               className="inline-flex items-center justify-center gap-3 border-2 border-electric-500 text-electric-500 hover:bg-electric-500 hover:text-black font-bold text-lg px-8 py-4 rounded-lg transition-all duration-300"
             >
               <span>Darmowa Wycena</span>
               <ChevronRight className="w-5 h-5" />
-            </a>
+            </Link>
           </div>
 
           {/* Trust Badges */}
@@ -302,12 +219,12 @@ export default function HomePage() {
               <div className="text-gray-400 text-sm">Zadowolonych Klientów</div>
             </div>
             <div className="bg-dark-card border border-electric-500/20 rounded-lg p-4">
-              <div className="text-3xl font-bold text-electric-500 mb-1">60 min</div>
-              <div className="text-gray-400 text-sm">Czas Dojazdu</div>
+              <div className="text-3xl font-bold text-electric-500 mb-1">12 mies.</div>
+              <div className="text-gray-400 text-sm">Gwarancji na Prace</div>
             </div>
             <div className="bg-dark-card border border-electric-500/20 rounded-lg p-4">
-              <div className="text-3xl font-bold text-electric-500 mb-1">24/7</div>
-              <div className="text-gray-400 text-sm">Dyżur Awaryjny</div>
+              <div className="text-3xl font-bold text-electric-500 mb-1">SEP</div>
+              <div className="text-gray-400 text-sm">Uprawnienia i Pomiary</div>
             </div>
           </div>
         </div>
@@ -343,13 +260,26 @@ export default function HomePage() {
               <span className="text-electric-500 text-glow">Usługi</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Kompleksowa obsługa elektryczna - od prostych napraw po skomplikowane instalacje
+              Instalacje elektryczne w domach, mieszkaniach i firmach - od montażu po pomiary i protokoły
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={index} {...service} />
+            {services.map((service) => (
+              <ServiceCard
+                key={service.slug}
+                icon={serviceIcons[service.slug]}
+                title={service.name}
+                description={service.cardDescription}
+                features={service.cardFeatures}
+                slug={service.slug}
+              />
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/uslugi" className="inline-flex items-center gap-2 text-electric-500 hover:text-electric-400 font-medium">
+              <span>Zobacz wszystkie usługi</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -410,7 +340,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="space-y-4">
-            {faqItems.map((item, index) => (
+            {homeFaq.map((item, index) => (
               <details
                 key={index}
                 className="group bg-dark-card rounded-xl border border-electric-500/20 hover:border-electric-500/40 transition-all duration-300"
@@ -433,13 +363,13 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <Zap className="w-16 h-16 mx-auto mb-6 text-electric-500 animate-pulse-glow" />
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="text-white">Potrzebujesz </span>
-            <span className="text-electric-500 text-glow">Elektryka</span>
+            <span className="text-white">Planujesz </span>
+            <span className="text-electric-500 text-glow">instalację elektryczną</span>
             <span className="text-white">?</span>
           </h2>
           <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-            Zadzwoń lub napisz - odpowiadamy w 15 minut! <br />
-            Darmowa wycena i profesjonalne doradztwo.
+            Zadzwoń lub napisz - przygotujemy bezpłatną wycenę. <br />
+            Opisz zakres prac, a zaproponujemy rozwiązanie i termin.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

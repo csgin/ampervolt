@@ -54,8 +54,8 @@ const StickyCTA = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-white font-bold text-lg">Potrzebujesz elektryka?</p>
-              <p className="text-gray-400 text-sm">Zadzwoń lub napisz - odpowiadamy w 15 minut!</p>
+              <p className="text-white font-bold text-lg">Planujesz instalację elektryczną?</p>
+              <p className="text-gray-400 text-sm">Zadzwoń lub napisz - przygotujemy bezpłatną wycenę</p>
             </div>
             <div className="flex items-center gap-4">
               <a
@@ -66,7 +66,7 @@ const StickyCTA = () => {
                 <span>+48 XXX XXX XXX</span>
               </a>
               <a
-                href="#kontakt"
+                href="/kontakt"
                 className="border-2 border-electric-500 text-electric-500 hover:bg-electric-500 hover:text-black font-bold px-6 py-3 rounded-lg transition-all duration-300"
               >
                 Darmowa Wycena
